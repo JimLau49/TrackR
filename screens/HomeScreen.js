@@ -26,6 +26,17 @@ export default function HomeScreen() {
           <Image source={require("../assets/images/mainCircle.png")} />
         </View>
       </View>
+
+      <View style={styles.mealContainer}>
+        <View style={styles.addMeal}>
+          <Image source={require("../assets/images/addMeal.png")} />
+        </View>
+      </View>
+      <View style={styles.exerciseContainer}>
+        <View style={styles.addExercise}>
+          <Image source={require("../assets/images/addExercise.png")} />
+        </View>
+      </View>
     </View>
   );
 }
@@ -39,14 +50,20 @@ const styles = StyleSheet.create({
 
   topContainer: {
     flex: 0.6,
-
     backgroundColor: "#EC3535",
     opacity: 0.85,
     zIndex: 1
   },
-  bottomContainer: {
-    flex: 0.4
+
+  mealContainer: {
+    flex: 0.2,
+    marginTop: "2%"
   },
+
+  exerciseContainer: {
+    flex: 0.2
+  },
+
   h1: {
     color: "white",
     fontSize: 55,
@@ -80,5 +97,17 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     zIndex: 3,
     marginTop: "15%"
+  },
+  addMeal: {
+    position: "absolute",
+    width: "100%",
+    alignItems: "center",
+    marginTop: "2%"
+  },
+  addExercise: {
+    position: "absolute",
+    width: "100%",
+    alignItems: "center",
+    marginTop: "2%"
   }
 });
