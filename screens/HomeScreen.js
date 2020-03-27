@@ -13,11 +13,15 @@ import { MonoText } from "../components/StyledText";
 import Svg from "react-native-svg";
 
 export default function HomeScreen() {
+  const [calories, setCalories] = React.useState(1000);
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topContainer}>
-        <Text style={styles.h1}>0</Text>
-        <Text style={styles.h2}>calories consumed</Text>
+        <View style={styles.calorieCounter}>
+          <Text style={styles.h1}>{calories}</Text>
+          <Text style={styles.h3}>kCal</Text>
+        </View>
+        <Text style={styles.h2}>Net Calories</Text>
         <View style={styles.mainCircle}>
           <Image source={require("../assets/images/mainCircle.png")} />
         </View>
@@ -45,23 +49,36 @@ const styles = StyleSheet.create({
   },
   h1: {
     color: "white",
-    fontSize: 70,
-    marginTop: 70,
+    fontSize: 55,
+    marginTop: "20%",
     alignSelf: "center",
     zIndex: 3
   },
   h2: {
     color: "white",
-    fontSize: 20,
+    fontSize: 25,
     zIndex: 3,
-    position: "absolute",
     alignSelf: "center",
-    marginTop: 150
+    bottom: "10%"
+  },
+  h3: {
+    color: "white",
+    fontSize: 30,
+    zIndex: 3,
+    alignSelf: "center"
   },
   mainCircle: {
     zIndex: 2,
     alignContent: "center",
     alignSelf: "center",
-    bottom: 120
+    position: "absolute",
+    bottom: "20%"
+  },
+  calorieCounter: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignSelf: "center",
+    zIndex: 3,
+    marginTop: "15%"
   }
 });
