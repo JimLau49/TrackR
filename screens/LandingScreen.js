@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 
-export default function LoginScreen() {
+export default function LandingScreen(props) {
+  const { setLandingPageClosed } = props;
   return (
     <View style={styles.container}>
       <Text style={styles.h1}>AlligatorChef</Text>
@@ -10,7 +11,7 @@ export default function LoginScreen() {
         <Button
           title="LET'S START"
           style={styles.button}
-          onPress={() => this.onPress()}
+          onPress={() => setLandingPageClosed()}
           color="#fff"
         />
       </View>

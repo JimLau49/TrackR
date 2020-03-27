@@ -17,16 +17,6 @@ export default function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Landing"
-        component={LandingScreen}
-        options={{
-          tilte: "Landing",
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
-          )
-        }}
-      />
-      <BottomTab.Screen
         name="Home"
         component={HomeScreen}
         options={{
