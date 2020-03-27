@@ -2,16 +2,27 @@ import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 
 export default function LandingScreen(props) {
-  const { setLandingPageClosed } = props;
+  const { setLandingPageOpen } = props;
   return (
     <View style={styles.container}>
-      <Text style={styles.h1}>AlligatorChef</Text>
-      <Text style={styles.h2}>Providing cajun bacon recipes since 1987.</Text>
+      <Text style={styles.h1}>TrackR</Text>
+
+      <Image
+        source={require("../assets/images/TrackRUpscaled.png")}
+        style={{
+          flex: 1,
+          zIndex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          position: "absolute"
+        }}
+      />
+
       <View style={styles.buttonContainer}>
         <Button
-          title="LET'S START"
+          title="BEGIN YOUR JOURNEY"
           style={styles.button}
-          onPress={() => setLandingPageClosed()}
+          onPress={() => setLandingPageOpen()}
           color="#fff"
         />
       </View>
@@ -28,19 +39,19 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   h1: {
-    color: "#008F68",
-    fontSize: 40
-  },
-  h2: {
-    color: "#FAE042",
-    fontSize: 18,
-    marginTop: 8
+    color: "black",
+    fontSize: 70,
+    zIndex: 2,
+    marginTop: 70
   },
 
   buttonContainer: {
-    backgroundColor: "#008F68",
+    backgroundColor: "#EC3535",
+    opacity: 0.9,
     borderRadius: 5,
     padding: 8,
-    margin: 8
+    width: 300,
+    marginBottom: 150,
+    zIndex: 2
   }
 });
