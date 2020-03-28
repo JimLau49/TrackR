@@ -5,10 +5,11 @@ import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import addMeal from './components/addMeal';
+import addMeal from "./components/addMeal";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import useLinking from "./navigation/useLinking";
 import LandingScreen from "./screens/LandingScreen";
+import searchItem from "./components/searchItem";
 
 const Stack = createStackNavigator();
 
@@ -66,6 +67,7 @@ export default function App(props) {
             <Stack.Navigator>
               <Stack.Screen name="Root" component={BottomTabNavigator} />
               <Stack.Screen name="Add Meal" component={addMeal} />
+              <Stack.Screen name="Search Item" component={searchItem} />
             </Stack.Navigator>
           </NavigationContainer>
         )}

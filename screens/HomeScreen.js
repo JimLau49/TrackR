@@ -8,8 +8,7 @@ import {
   View
 } from "react-native";
 
-
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({ navigation }) {
   const [calories, setCalories] = React.useState(1000);
   return (
     <View style={styles.mainContainer}>
@@ -24,20 +23,18 @@ export default function HomeScreen({navigation}) {
         </View>
       </View>
 
-     
-        <View style={styles.mealContainer}>
-          <TouchableOpacity  onPress={() => {
-              
-               navigation.navigate('Add Meal');
-          }
-             
-          }> 
-            <View style={styles.addMeal}>
-              <Image source={require("../assets/images/addMeal.png")} />
-            </View>
+      <View style={styles.mealContainer}>
+        <View style={styles.addMeal}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Add Meal");
+            }}
+          >
+            <Image source={require("../assets/images/addMeal.png")} />
           </TouchableOpacity>
         </View>
-      
+      </View>
+
       <View style={styles.exerciseContainer}>
         <View style={styles.addExercise}>
           <Image source={require("../assets/images/addExercise.png")} />
