@@ -7,12 +7,9 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import * as WebBrowser from "expo-web-browser";
-import { MonoText } from "../components/StyledText";
-import Svg from "react-native-svg";
 
-export default function HomeScreen() {
+
+export default function HomeScreen({navigation}) {
   const [calories, setCalories] = React.useState(1000);
   return (
     <View style={styles.mainContainer}>
@@ -27,11 +24,20 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      <View style={styles.mealContainer}>
-        <View style={styles.addMeal}>
-          <Image source={require("../assets/images/addMeal.png")} />
+     
+        <View style={styles.mealContainer}>
+          <TouchableOpacity  onPress={() => {
+              
+               navigation.navigate('Add Meal');
+          }
+             
+          }> 
+            <View style={styles.addMeal}>
+              <Image source={require("../assets/images/addMeal.png")} />
+            </View>
+          </TouchableOpacity>
         </View>
-      </View>
+      
       <View style={styles.exerciseContainer}>
         <View style={styles.addExercise}>
           <Image source={require("../assets/images/addExercise.png")} />
