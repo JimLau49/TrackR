@@ -8,8 +8,8 @@ export default function TabBarMaterialIcons(props) {
     <MaterialIcons
       name={props.name}
       size={45}
-      style={{ marginBottom: -2}}
-      color={props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+      style={{ marginBottom: -2 }}
+      color="black"
     />
   );
 }
