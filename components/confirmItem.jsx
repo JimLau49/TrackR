@@ -19,25 +19,29 @@ export default function confirmItem({ route, navigation }) {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topBanner}>
-        <Text style={styles.title}>{title}</Text>
-        <View style={styles.addIcon}>
+         
+          <Text style={styles.title}>{title}</Text>
+        
+        <View style={styles.foodIcon}>
           <TabBarMaterial name="restaurant-menu" color="black" />
         </View>
       </View>
       <View style={styles.addComponent}>
-        <Text style={styles.quantity}>Quantity</Text>
+      
+        <Text style={styles.quantity}>Quantity</Text>  
         <TextInput style={styles.numPad} keyboardType="number-pad" />
-        <View style={styles.button}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Search Item");
-            }}
-          >
-            <Image source={require("../assets/images/addButton.png")} />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={styles.SubmitButtonStyle}
+          activeOpacity = { .5 }
+          onPress={() => navigation.navigate("Search Item")}
+       >
+            <Text style={styles.TextStyle}> Add to journal </Text>
+            
+      </TouchableOpacity>
       </View>
-      <View style={styles.nutrientInformation}></View>
+      <View style={styles.nutrientInformation}>
+        
+      </View>
     </View>
   );
 }
@@ -45,56 +49,53 @@ export default function confirmItem({ route, navigation }) {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    zIndex: 0,
     alignContent: "center"
   },
-
   topBanner: {
-    flex: 0.1,
+    flex: 0.2,
     backgroundColor: "#EC3535",
     opacity: 0.8,
-    padding: 20,
     flexDirection: "row",
     justifyContent: "center"
-  },
-
-  button: {
-    marginTop: "5%",
-    alignContent: "center",
-    alignSelf: "center"
   },
   title: {
     fontSize: 30,
     alignSelf: "center"
   },
+  addComponent:{
+    flex:0.4
+  },
   numPad: {
     fontSize: 22,
-    marginTop: "12.5%",
-    marginStart: "5%",
+    marginTop: "2%",
+    marginStart: "9%",
     backgroundColor: "white",
     width: "20%",
-    height: "2%",
+    height: "15%",
     textAlign: "center"
   },
-  addComponent: {
-    flexDirection: "column"
-  },
   quantity: {
-    zIndex: 3,
+    marginTop: "5%",
+    marginLeft: "8%",
     fontSize: 35,
-    marginStart: "4%",
+  
+  },
+  addToJournal: {
+    alignSelf: "center",
     marginTop: "5%"
   },
+  addComponent: {
+    flexDirection: "column",
+  },
   touchable: {
-    flex: 1,
     position: "relative"
   },
-  addIcon: {
-    alignItems: "flex-end",
-    marginLeft: "4%",
-    zIndex: 2
+  foodIcon: {
+    marginTop: "6%",
+    marginLeft: "2%"
   },
   nutrientInformation: {
+    flex: 0.4,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -103,5 +104,24 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7
+  },
+  SubmitButtonStyle: {
+    opacity: 0.8,
+    marginTop:10,
+    paddingTop:15,
+    paddingBottom:15,
+    marginTop: 20,
+    marginLeft:35,
+    marginRight:35,
+    backgroundColor:'#EC3535',
+    borderRadius:20,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+ 
+  TextStyle:{
+      color:'black',
+      textAlign:'center',
+      fontSize: 22
   }
 });
