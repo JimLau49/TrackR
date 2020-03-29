@@ -37,7 +37,13 @@ export default function HomeScreen({ navigation }) {
 
       <View style={styles.exerciseContainer}>
         <View style={styles.addExercise}>
-          <Image source={require("../assets/images/addExercise.png")} />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Add Excercise");
+            }}
+          >
+            <Image source={require("../assets/images/addExercise.png")} />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

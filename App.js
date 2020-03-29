@@ -11,6 +11,7 @@ import useLinking from "./navigation/useLinking";
 import LandingScreen from "./screens/LandingScreen";
 import searchItem from "./components/searchItem";
 import confirmItem from "./components/confirmItem";
+import addExercise from "./components/addExercise";
 
 const Stack = createStackNavigator();
 
@@ -70,6 +71,7 @@ export default function App(props) {
               <Stack.Screen name="Add Meal" component={addMeal} />
               <Stack.Screen name="Search Item" component={searchItem} />
               <Stack.Screen name="Confirm Item" component={confirmItem} />
+              <Stack.Screen name="Add Excercise" component={addExercise} />
             </Stack.Navigator>
           </NavigationContainer>
         )}
