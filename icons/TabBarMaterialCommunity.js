@@ -1,14 +1,14 @@
 import * as React from "react";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Colors from "../constants/Colors";
 
-export default function TabBarMaterialIcons(props) {
+export default function TabBarMaterial(props) {
   return (
-    <MaterialIcons
+    <MaterialCommunityIcons
       name={props.name}
-      size={45}
-      style={{ marginBottom: -2}}
+      size={30}
+      style={{ marginBottom: -3 }}
       color={props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
   );

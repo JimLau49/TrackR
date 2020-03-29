@@ -1,7 +1,6 @@
 import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import TabBarOcticon from "../icons/TabBarOcticon";
-import TabBarMaterial from "../icons/TabBarMaterial";
+import TabBarMaterialCommunity from "../icons/TabBarMaterialCommunity";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 
@@ -22,7 +21,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: "Me",
           tabBarIcon: ({ focused }) => (
-            <TabBarMaterial focused={focused} name="face" />
+            <TabBarMaterialCommunity focused={focused} name="face" />
           )
         }}
       />
@@ -32,7 +31,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: "Report",
           tabBarIcon: ({ focused }) => (
-            <TabBarMaterial focused={focused} name="file-document-outline" />
+            <TabBarMaterialCommunity focused={focused} name="file-document-outline" />
           )
         }}
       />

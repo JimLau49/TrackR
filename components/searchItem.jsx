@@ -9,24 +9,29 @@ import {
   FlatList
 } from "react-native";
 import { SearchBar } from "react-native-elements";
-import Autocomplete from "react-native-autocomplete-input";
+import TabBarMaterial from "../icons/TabBarMaterial";
+
+
 export default function searchItem({ navigation }) {
   const DATA = [
     {
       id: "1",
-      title: "First Item"
+      title: "First Item",
+      calorieInfo: "230kcal - 1 serving (270g)"
     },
     {
       id: "2",
-      title: "Second Item"
+      title: "Second Item",
+      calorieInfo: "230kcal - 1 serving (270g)"
     },
     {
       id: "3",
-      title: "Third Item"
+      title: "Third Item",
+      calorieInfo: "230kcal - 1 serving (270g)"
     }
   ];
 
-  const [userInput, setUserInput] = React.useState(null);
+  const [userInput, setUserInput] = React.useState("");
   const [selected, setSelected] = React.useState(new Map());
   const [autocomplete, setAutocomplete] = React.useState([...DATA]);
 
@@ -52,16 +57,22 @@ export default function searchItem({ navigation }) {
     setUserInput("");
   };
 
-  const Item = ({ id, title, selected, onSelect }) => {
+  const Item = ({ id, title, calorieInfo, selected, onSelect }) => {
     return (
       <TouchableOpacity
         onPress={() => onSelect(id)}
-        style={[
-          styles.item,
-          { backgroundColor: selected ? "#6e3b6e" : "#f9c2ff" }
-        ]}
       >
-        <Text style={styles.title}>{title}</Text>
+        <View style= {styles.item}> 
+          <View style={styles.itemContainer}> 
+              <Text style={styles.title}>{title}</Text>
+            <View style={styles.addIcon}>
+              <TabBarMaterial name="add-circle" color="black" />
+            </View>
+          </View>
+          <Text style={styles.calorieInfo}>{calorieInfo}</Text>
+        </View>
+        
+       
       </TouchableOpacity>
     );
   };
@@ -74,16 +85,19 @@ export default function searchItem({ navigation }) {
         onClear={clearSearch}
         onChangeText={userInput => updateSearchValues(userInput, DATA)}
       />
-      {userInput !== "" && userInput !== null ? (
+      {userInput !== "" ? (
         <FlatList
           data={autocomplete}
           renderItem={({ item }) => (
-            <Item
-              id={item.id}
-              title={item.title}
-              selected={!!selected.get(item.id)}
-              onSelect={onSelect}
-            />
+            
+              <Item
+                id={item.id}
+                title={item.title}
+                calorieInfo={item.calorieInfo}
+                selected={!!selected.get(item.id)}
+                onSelect={onSelect}
+              />
+            
           )}
           keyExtractor={item => item.id}
         />
@@ -105,9 +119,24 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   item: {
-    backgroundColor: "#f9c2ff",
+    backgroundColor: "#FFFFFF",
     padding: 20,
-    marginVertical: 8,
+    marginVertical: 7,
     marginHorizontal: 16
+  },
+  itemContainer: {
+    flexDirection: "row"
+  },
+  title: {
+    fontSize: 30
+  },
+  addIcon: {
+    alignItems: 'flex-end',
+    flex: 1
+  },
+  calorieInfo: {
+    fontSize: 14,
+    color: "grey"
   }
+  
 });
