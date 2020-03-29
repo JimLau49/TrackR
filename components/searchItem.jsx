@@ -11,7 +11,6 @@ import {
 import { SearchBar } from "react-native-elements";
 import TabBarMaterial from "../icons/TabBarMaterial";
 
-
 export default function searchItem({ navigation }) {
   const DATA = [
     {
@@ -57,22 +56,22 @@ export default function searchItem({ navigation }) {
     setUserInput("");
   };
 
-  const Item = ({ id, title, calorieInfo, selected, onSelect }) => {
+  const Item = ({ id, title, calorieInfo }) => {
     return (
       <TouchableOpacity
-        onPress={() => onSelect(id)}
+        onPress={() => {
+          navigation.navigate("Confirm Item", { title: title });
+        }}
       >
-        <View style= {styles.item}> 
-          <View style={styles.itemContainer}> 
-              <Text style={styles.title}>{title}</Text>
+        <View style={styles.item}>
+          <View style={styles.itemContainer}>
+            <Text style={styles.title}>{title}</Text>
             <View style={styles.addIcon}>
               <TabBarMaterial name="add-circle" color="black" />
             </View>
           </View>
           <Text style={styles.calorieInfo}>{calorieInfo}</Text>
         </View>
-        
-       
       </TouchableOpacity>
     );
   };
@@ -89,15 +88,11 @@ export default function searchItem({ navigation }) {
         <FlatList
           data={autocomplete}
           renderItem={({ item }) => (
-            
-              <Item
-                id={item.id}
-                title={item.title}
-                calorieInfo={item.calorieInfo}
-                selected={!!selected.get(item.id)}
-                onSelect={onSelect}
-              />
-            
+            <Item
+              id={item.id}
+              title={item.title}
+              calorieInfo={item.calorieInfo}
+            />
           )}
           keyExtractor={item => item.id}
         />
@@ -131,12 +126,11 @@ const styles = StyleSheet.create({
     fontSize: 30
   },
   addIcon: {
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
     flex: 1
   },
   calorieInfo: {
     fontSize: 14,
     color: "grey"
   }
-  
 });

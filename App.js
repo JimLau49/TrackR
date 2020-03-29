@@ -10,6 +10,7 @@ import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import useLinking from "./navigation/useLinking";
 import LandingScreen from "./screens/LandingScreen";
 import searchItem from "./components/searchItem";
+import confirmItem from "./components/confirmItem";
 
 const Stack = createStackNavigator();
 
@@ -68,6 +69,7 @@ export default function App(props) {
               <Stack.Screen name="Root" component={BottomTabNavigator} />
               <Stack.Screen name="Add Meal" component={addMeal} />
               <Stack.Screen name="Search Item" component={searchItem} />
+              <Stack.Screen name="Confirm Item" component={confirmItem} />
             </Stack.Navigator>
           </NavigationContainer>
         )}
