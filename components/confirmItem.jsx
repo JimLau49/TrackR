@@ -33,11 +33,11 @@ export default function confirmItem({ route, navigation }) {
           <Text style={styles.quantity}>Quantity</Text>  
           <TextInput style={styles.numPad} keyboardType="number-pad" />
           <TouchableOpacity
-              style={styles.SubmitButtonStyle}
+              style={styles.addToJournalSubmit}
               activeOpacity = { .5 }
               onPress={() => navigation.navigate("Search Item")}
           >
-            <Text style={styles.TextStyle}> Add to journal </Text>
+            <Text style={styles.addToJournalTextStyle}> Add to journal </Text>
                 
           </TouchableOpacity>
         </View>
@@ -45,7 +45,7 @@ export default function confirmItem({ route, navigation }) {
 
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> 
         <View style={styles.nutrientInformation}>
-
+          <Text style={styles.nutrientTitle}>Nutrients</Text>
         </View>
       </TouchableWithoutFeedback>
     </View>
@@ -97,11 +97,12 @@ const styles = StyleSheet.create({
     position: "relative"
   },
   foodIcon: {
-    marginTop: "6%",
+    marginTop: "5%",
     marginLeft: "2%"
   },
   nutrientInformation: {
     flex: 0.75,
+
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     marginRight: 30,
     borderRadius:20,
   },
-  SubmitButtonStyle: {
+  addToJournalSubmit: {
     opacity: 0.8,
     marginTop:10,
     paddingTop:15,
@@ -128,10 +129,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff'
   },
-
-  TextStyle:{
+  addToJournalTextStyle: {
       color:'black',
       textAlign:'center',
       fontSize: 22
+  },
+  nutrientTitle: {
+    fontSize: 30,
+    marginTop: 15,
+    alignSelf: "center"
   }
+
 });
