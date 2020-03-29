@@ -7,6 +7,7 @@ import {
   Text,
   Keyboard,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   TextInput,
   View,
   FlatList
@@ -26,22 +27,27 @@ export default function confirmItem({ route, navigation }) {
           <TabBarMaterial name="restaurant-menu" color="black" />
         </View>
       </View>
-      <View style={styles.addComponent}>
-      
-        <Text style={styles.quantity}>Quantity</Text>  
-        <TextInput style={styles.numPad} keyboardType="number-pad" />
-        <TouchableOpacity
-          style={styles.SubmitButtonStyle}
-          activeOpacity = { .5 }
-          onPress={() => navigation.navigate("Search Item")}
-       >
-            <Text style={styles.TextStyle}> Add to journal </Text>
-            
-      </TouchableOpacity>
-      </View>
-      <View style={styles.nutrientInformation}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> 
+        <View style={styles.addComponent}>
         
-      </View>
+          <Text style={styles.quantity}>Quantity</Text>  
+          <TextInput style={styles.numPad} keyboardType="number-pad" />
+          <TouchableOpacity
+              style={styles.SubmitButtonStyle}
+              activeOpacity = { .5 }
+              onPress={() => navigation.navigate("Search Item")}
+          >
+            <Text style={styles.TextStyle}> Add to journal </Text>
+                
+          </TouchableOpacity>
+        </View>
+      </TouchableWithoutFeedback>
+
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> 
+        <View style={styles.nutrientInformation}>
+
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 }
@@ -95,7 +101,7 @@ const styles = StyleSheet.create({
     marginLeft: "2%"
   },
   nutrientInformation: {
-    flex: 0.4,
+    flex: 0.75,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -103,7 +109,11 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-    elevation: 7
+    elevation: 7,
+    backgroundColor: "white",
+    marginLeft: 30,
+    marginRight: 30,
+    borderRadius:20,
   },
   SubmitButtonStyle: {
     opacity: 0.8,
@@ -118,7 +128,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff'
   },
- 
+
   TextStyle:{
       color:'black',
       textAlign:'center',
