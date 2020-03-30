@@ -10,7 +10,7 @@ import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import useLinking from "./navigation/useLinking";
 import LandingScreen from "./screens/LandingScreen";
 import searchItem from "./components/searchItem";
-import ConfirmItem from "./components/ConfirmItem";
+import ConfirmItem from "./components/confirmItem";
 import addExercise from "./components/addExercise";
 import { UserProvider } from "./context/userData.context";
 import ConfirmExercise from "./components/ConfirmExercise";
