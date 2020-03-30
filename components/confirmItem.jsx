@@ -30,21 +30,19 @@ export default function confirmItem({ route, navigation }) {
         <Text style={styles.nutrientInfo}>
           {" "}
           Calories:{" "}
-          {quantity === 0 || isNaN(quantity)
-            ? calories
-            : calories * quantity}{" "}
+          {quantity === 0 || isNaN(quantity) ? calories : calories * quantity}
           kCal
         </Text>
         <Divider style={{ backgroundColor: "grey" }} />
         <Text style={styles.nutrientInfo}>
           {" "}
           Protein:{" "}
-          {quantity === 0 || isNaN(quantity) ? protein : protein * quantity} g
+          {quantity === 0 || isNaN(quantity) ? protein : protein * quantity}g
         </Text>
         <Divider style={{ backgroundColor: "grey" }} />
         <Text style={styles.nutrientInfo}>
           {" "}
-          Fat: {quantity === 0 || isNaN(quantity) ? fat : fat * quantity} g
+          Fat: {quantity === 0 || isNaN(quantity) ? fat : fat * quantity}g
         </Text>
         <Divider style={{ backgroundColor: "grey" }} />
         <Text style={styles.nutrientInfo}>
@@ -52,14 +50,14 @@ export default function confirmItem({ route, navigation }) {
           Cholesterol:{" "}
           {quantity === 0 || isNaN(quantity)
             ? cholesterol
-            : cholesterol * quantity}{" "}
+            : cholesterol * quantity}
           mg
         </Text>
         <Divider style={{ backgroundColor: "grey" }} />
         <Text style={styles.nutrientInfo}>
           {" "}
           Sodium:{" "}
-          {quantity === 0 || isNaN(quantity) ? sodium : sodium * quantity} mg
+          {quantity === 0 || isNaN(quantity) ? sodium : sodium * quantity}mg
         </Text>
         <Divider style={{ backgroundColor: "grey" }} />
       </View>
@@ -73,19 +71,6 @@ export default function confirmItem({ route, navigation }) {
   React.useEffect(() => {
     filteredData();
   }, []);
-
-  const renderSeparator = () => {
-    return (
-      <View
-        style={{
-          height: 1,
-          width: "86%",
-          backgroundColor: "#CED0CE",
-          marginLeft: "14%"
-        }}
-      />
-    );
-  };
 
   return (
     <View style={styles.mainContainer}>
@@ -120,7 +105,6 @@ export default function confirmItem({ route, navigation }) {
         <View style={styles.nutrientInformation}>
           <Text style={styles.nutrientTitle}>Nutrients</Text>
           <FlatList
-            ItemSeparatorComponent={renderSeparator}
             data={nutrients}
             renderItem={({ item }) => (
               <NutrientItem

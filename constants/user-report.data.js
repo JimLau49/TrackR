@@ -1,7 +1,9 @@
-export let userReport = {
-  calories: 0,
-  protein: 0,
-  fat: 0,
-  sodium: 0,
-  cholesterol: 0
-};
+export let userReport = [
+  {
+    calories: 1,
+    protein: 1,
+    fat: 1,
+    sodium: 1,
+    cholesterol: 1
+  }
+];

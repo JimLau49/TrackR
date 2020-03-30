@@ -2,7 +2,7 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TabBarMaterialCommunity from "../icons/TabBarMaterialCommunity";
 import HomeScreen from "../screens/HomeScreen";
-import LinksScreen from "../screens/ReportScreen";
+import ReportScreen from "../screens/ReportScreen";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Home";
@@ -27,7 +27,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Report"
-        component={LinksScreen}
+        component={ReportScreen}
         options={{
           title: "Report",
           tabBarIcon: ({ focused }) => (

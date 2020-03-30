@@ -1,11 +1,47 @@
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import * as WebBrowser from "expo-web-browser";
-import { RectButton, ScrollView } from "react-native-gesture-handler";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import { userReport } from "../constants/user-report.data";
+import { Divider } from "react-native-elements";
+export default function ReportScreen() {
+  const [nutrients, setNutrients] = React.useState([...userReport]);
 
-export default function LinksScreen() {
-  return <View></View>;
+  const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
+    return (
+      <View>
+        <Text style={styles.nutrientInfo}>Calories: {calories}kCal</Text>
+        <Divider style={{ backgroundColor: "grey" }} />
+        <Text style={styles.nutrientInfo}>Protein: {protein}g</Text>
+        <Divider style={{ backgroundColor: "grey" }} />
+        <Text style={styles.nutrientInfo}>Fat: {fat}g</Text>
+        <Divider style={{ backgroundColor: "grey" }} />
+        <Text style={styles.nutrientInfo}>Cholesterol: {cholesterol}mg</Text>
+        <Divider style={{ backgroundColor: "grey" }} />
+        <Text style={styles.nutrientInfo}>Sodium: {sodium}mg</Text>
+        <Divider style={{ backgroundColor: "grey" }} />
+      </View>
+    );
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.nutrientInformation}>
+        <Text style={styles.nutrientTitle}>Nutrients</Text>
+        <FlatList
+          data={nutrients}
+          renderItem={({ item }) => (
+            <NutrientItem
+              calories={item.calories}
+              protein={item.protein}
+              fat={item.fat}
+              cholesterol={item.cholesterol}
+              sodium={item.sodium}
+            />
+          )}
+          keyExtractor={item => item.id}
+        />
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -13,26 +49,29 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fafafa"
   },
-  contentContainer: {
-    paddingTop: 15
+
+  nutrientInformation: {
+    flex: 0.95,
+    marginTop: "8%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
+    backgroundColor: "white",
+    marginLeft: 30,
+    marginRight: 30,
+    borderRadius: 20
   },
-  optionIconContainer: {
-    marginRight: 12
+  nutrientTitle: {
+    fontSize: 30,
+    marginTop: 15,
+    alignSelf: "center"
   },
-  option: {
-    backgroundColor: "#fdfdfd",
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: 0,
-    borderColor: "#ededed"
-  },
-  lastOption: {
-    borderBottomWidth: StyleSheet.hairlineWidth
-  },
-  optionText: {
-    fontSize: 15,
-    alignSelf: "flex-start",
-    marginTop: 1
+  nutrientInfo: {
+    fontSize: 22
   }
 });
