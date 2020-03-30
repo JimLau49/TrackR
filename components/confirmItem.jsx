@@ -14,38 +14,70 @@ import {
 } from "react-native";
 import TabBarMaterial from "../icons/TabBarMaterial";
 import { foodData } from "../constants/food-information.data";
+import { ScrollView } from "react-native-gesture-handler";
 export default function confirmItem({ route, navigation }) {
   const { title } = route.params;
   const [nutrients, setNutrients] = React.useState([...foodData]);
+
+  const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
+    return (
+      <ScrollView>
+        <Text>Calories: {calories}</Text>
+        <Text>Protein: {protein}</Text>
+        <Text>Fat: {fat}</Text>
+        <Text>Cholesterol: {cholesterol}</Text>
+        <Text>Sodium: {sodium}</Text>
+      </ScrollView>
+    );
+  };
+
+  const filteredData = () => {
+    const queryResult = nutrients.filter(food => food.title === title);
+    setNutrients([...queryResult]);
+  };
+  React.useEffect(() => {
+    filteredData();
+  }, []);
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topBanner}>
-         
-          <Text style={styles.title}>{title}</Text>
-        
+        <Text style={styles.title}>{title}</Text>
+
         <View style={styles.foodIcon}>
           <TabBarMaterial name="restaurant-menu" color="black" />
         </View>
       </View>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> 
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.addComponent}>
-        
-          <Text style={styles.quantity}>Quantity</Text>  
+          <Text style={styles.quantity}>Quantity</Text>
           <TextInput style={styles.numPad} keyboardType="number-pad" />
           <TouchableOpacity
-              style={styles.addToJournalSubmit}
-              activeOpacity = { .5 }
-              onPress={() => navigation.navigate("Search Item")}
+            style={styles.addToJournalSubmit}
+            activeOpacity={0.5}
+            onPress={() => navigation.navigate("Search Item")}
           >
             <Text style={styles.addToJournalTextStyle}> Add to journal </Text>
-                
           </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> 
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.nutrientInformation}>
           <Text style={styles.nutrientTitle}>Nutrients</Text>
+          <FlatList
+            data={nutrients}
+            renderItem={({ item }) => (
+              <NutrientItem
+                calories={item.calories}
+                protein={item.protein}
+                fat={item.fat}
+                cholesterol={item.cholesterol}
+                sodium={item.sodium}
+              />
+            )}
+            keyExtractor={item => item.id}
+          />
         </View>
       </TouchableWithoutFeedback>
     </View>
@@ -68,8 +100,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     alignSelf: "center"
   },
-  addComponent:{
-    flex:0.4
+  addComponent: {
+    flex: 0.4
   },
   numPad: {
     fontSize: 22,
@@ -83,15 +115,14 @@ const styles = StyleSheet.create({
   quantity: {
     marginTop: "5%",
     marginLeft: "8%",
-    fontSize: 35,
-  
+    fontSize: 35
   },
   addToJournal: {
     alignSelf: "center",
     marginTop: "5%"
   },
   addComponent: {
-    flexDirection: "column",
+    flexDirection: "column"
   },
   touchable: {
     position: "relative"
@@ -114,30 +145,29 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginLeft: 30,
     marginRight: 30,
-    borderRadius:20,
+    borderRadius: 20
   },
   addToJournalSubmit: {
     opacity: 0.8,
-    marginTop:10,
-    paddingTop:15,
-    paddingBottom:15,
+    marginTop: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
     marginTop: 20,
-    marginLeft:35,
-    marginRight:35,
-    backgroundColor:'#EC3535',
-    borderRadius:20,
+    marginLeft: 35,
+    marginRight: 35,
+    backgroundColor: "#EC3535",
+    borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#fff'
+    borderColor: "#fff"
   },
   addToJournalTextStyle: {
-      color:'black',
-      textAlign:'center',
-      fontSize: 22
+    color: "black",
+    textAlign: "center",
+    fontSize: 22
   },
   nutrientTitle: {
     fontSize: 30,
     marginTop: 15,
     alignSelf: "center"
   }
-
 });
