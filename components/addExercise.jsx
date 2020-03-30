@@ -11,10 +11,13 @@ import {
 import { SearchBar } from "react-native-elements";
 import TabBarMaterial from "../icons/TabBarMaterial";
 import { exerciseInfo } from "../constants/exercise-information.data";
+import { exerciseSuggestions } from "../constants/exercise-suggestions.data";
 export default function searchItem({ navigation }) {
   const [userInput, setUserInput] = React.useState("");
   const [autocomplete, setAutocomplete] = React.useState([...exerciseInfo]);
-
+  const [suggestions, setSuggestions] = React.useState([
+    ...exerciseSuggestions
+  ]);
   const updateSearchValues = (text, matchingFoods) => {
     let sanitizedText = text.toLowerCase();
     const queryResult = matchingFoods.filter(
@@ -68,7 +71,22 @@ export default function searchItem({ navigation }) {
           )}
           keyExtractor={item => item.id}
         />
-      ) : null}
+      ) : (
+        <>
+          <Text style={styles.suggestions}>Your Suggestions</Text>
+          <FlatList
+            data={suggestions}
+            renderItem={({ item }) => (
+              <Item
+                id={item.id}
+                title={item.title}
+                calorieInfo={item.calorieInfo}
+              />
+            )}
+            keyExtractor={item => item.id}
+          />
+        </>
+      )}
     </View>
   );
 }
@@ -104,5 +122,10 @@ const styles = StyleSheet.create({
   calorieInfo: {
     fontSize: 14,
     color: "grey"
+  },
+  suggestions: {
+    fontSize: 22,
+    alignSelf: "center",
+    marginTop: "5%"
   }
 });
