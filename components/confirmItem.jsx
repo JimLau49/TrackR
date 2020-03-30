@@ -30,16 +30,37 @@ export default function confirmItem({ route, navigation }) {
         <Text style={styles.nutrientInfo}>
           {" "}
           Calories:{" "}
-          {quantity === 0 || isNaN(quantity) ? calories : calories * quantity} g
+          {quantity === 0 || isNaN(quantity)
+            ? calories
+            : calories * quantity}{" "}
+          kCal
         </Text>
         <Divider style={{ backgroundColor: "grey" }} />
-        <Text style={styles.nutrientInfo}> Protein: {protein}</Text>
+        <Text style={styles.nutrientInfo}>
+          {" "}
+          Protein:{" "}
+          {quantity === 0 || isNaN(quantity) ? protein : protein * quantity} g
+        </Text>
         <Divider style={{ backgroundColor: "grey" }} />
-        <Text style={styles.nutrientInfo}> Fat: {fat}</Text>
+        <Text style={styles.nutrientInfo}>
+          {" "}
+          Fat: {quantity === 0 || isNaN(quantity) ? fat : fat * quantity} g
+        </Text>
         <Divider style={{ backgroundColor: "grey" }} />
-        <Text style={styles.nutrientInfo}> Cholesterol: {cholesterol}</Text>
+        <Text style={styles.nutrientInfo}>
+          {" "}
+          Cholesterol:{" "}
+          {quantity === 0 || isNaN(quantity)
+            ? cholesterol
+            : cholesterol * quantity}{" "}
+          mg
+        </Text>
         <Divider style={{ backgroundColor: "grey" }} />
-        <Text style={styles.nutrientInfo}> Sodium: {sodium}</Text>
+        <Text style={styles.nutrientInfo}>
+          {" "}
+          Sodium:{" "}
+          {quantity === 0 || isNaN(quantity) ? sodium : sodium * quantity} mg
+        </Text>
         <Divider style={{ backgroundColor: "grey" }} />
       </View>
     );

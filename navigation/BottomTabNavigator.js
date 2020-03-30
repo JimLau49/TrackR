@@ -2,7 +2,7 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TabBarMaterialCommunity from "../icons/TabBarMaterialCommunity";
 import HomeScreen from "../screens/HomeScreen";
-import LinksScreen from "../screens/LinksScreen";
+import LinksScreen from "../screens/ReportScreen";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Home";
@@ -26,12 +26,15 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="Links"
+        name="Report"
         component={LinksScreen}
         options={{
           title: "Report",
           tabBarIcon: ({ focused }) => (
-            <TabBarMaterialCommunity focused={focused} name="file-document-outline" />
+            <TabBarMaterialCommunity
+              focused={focused}
+              name="file-document-outline"
+            />
           )
         }}
       />
@@ -46,7 +49,7 @@ export function getHeaderTitle(route) {
   switch (routeName) {
     case "Home":
       return "My Profile";
-    case "Links":
-      return "Links to learn more";
+    case "Report":
+      return "My Report";
   }
 }
