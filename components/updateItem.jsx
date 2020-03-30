@@ -18,9 +18,9 @@ import TabBarMaterial from "../icons/TabBarMaterial";
 import { foodData } from "../constants/food-information.data";
 import { Divider } from "react-native-elements";
 import { UserContext } from "../context/userData.context";
+import { Button } from "react-native-elements";
 
-
-export default function ConfirmItem({ route, navigation }) {
+export default function updateItem({ route, navigation }) {
   const { title, id } = route.params;
   const [nutrients, setNutrients] = React.useState([...foodData]);
   const [quantity, setQuantity] = React.useState(1);
@@ -109,16 +109,31 @@ export default function ConfirmItem({ route, navigation }) {
             keyboardType="number-pad"
             onChangeText={quantity => setQuantity(parseInt(quantity))}
           />
-          <TouchableOpacity
-            style={styles.addToJournalSubmit}
-            activeOpacity={0.5}
-            onPress={() => {
-              updateUserReport();
-              navigation.navigate("Search Item");
-            }}
-          >
-            <Text style={styles.addToJournalTextStyle}> Add to journal </Text>
-          </TouchableOpacity>
+          <View style={styles.buttons}>
+                <TouchableOpacity
+                    style={{marginLeft: 36, width: 150}}
+                    activeOpacity={0.5}
+                    
+                >
+                <Button onPress={() => {
+                    updateUserReport();
+                    navigation.navigate("Search Item");
+                    }}
+                    color="black" title="Update" buttonStyle={{  opacity: 0.8, backgroundColor: "#EC3535", borderRadius: 20, borderWidth: 1, borderColor: "#EC3535" 
+                }} containerStyle={{ flex: 1 }}/>
+                </TouchableOpacity>
+                
+                <TouchableOpacity
+                    style={{ width: 180}}
+                    activeOpacity={0.5}
+                >
+                <Button onPress={() => {
+                    updateUserReport();
+                    navigation.navigate("Search Item");
+                    }}title="Delete" buttonStyle={{  opacity: 0.8, backgroundColor: "#EC3535", borderRadius: 20, borderWidth: 1, borderColor: "#EC3535"}}  containerStyle={{ flex: 1, marginLeft: 20 
+                    }} />
+                </TouchableOpacity>
+          </View>
         </View>
       </TouchableWithoutFeedback>
 
@@ -169,17 +184,13 @@ const styles = StyleSheet.create({
     marginStart: "9%",
     backgroundColor: "white",
     width: "20%",
-    height: "15%",
+    height: "20%",
     textAlign: "center"
   },
   quantity: {
     marginTop: "5%",
     marginLeft: "8%",
     fontSize: 35
-  },
-  addToJournal: {
-    alignSelf: "center",
-    marginTop: "5%"
   },
   addComponent: {
     flexDirection: "column"
@@ -193,7 +204,6 @@ const styles = StyleSheet.create({
   },
   nutrientInformation: {
     flex: 0.75,
-
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -207,24 +217,6 @@ const styles = StyleSheet.create({
     marginRight: 30,
     borderRadius: 20
   },
-  addToJournalSubmit: {
-    opacity: 0.8,
-    marginTop: 10,
-    paddingTop: 15,
-    paddingBottom: 15,
-    marginTop: 20,
-    marginLeft: 35,
-    marginRight: 35,
-    backgroundColor: "#EC3535",
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "#fff"
-  },
-  addToJournalTextStyle: {
-    color: "black",
-    textAlign: "center",
-    fontSize: 22
-  },
   nutrientTitle: {
     fontSize: 30,
     marginTop: 15,
@@ -232,5 +224,16 @@ const styles = StyleSheet.create({
   },
   nutrientInfo: {
     fontSize: 22
-  }
+  },
+  buttons: {
+    flexDirection: 'row',
+    flex: 1,
+    top: 20
+  },
+  deleteToJournalTextStyle: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 22
+  },
+  
 });
