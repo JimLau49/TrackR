@@ -8,26 +8,35 @@ import {
   Keyboard,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Dimensions,
   TextInput,
+  ScrollView,
   View,
   FlatList
 } from "react-native";
 import TabBarMaterial from "../icons/TabBarMaterial";
 import { foodData } from "../constants/food-information.data";
-import { ScrollView } from "react-native-gesture-handler";
+import { Divider } from "react-native-elements";
+
 export default function confirmItem({ route, navigation }) {
   const { title } = route.params;
   const [nutrients, setNutrients] = React.useState([...foodData]);
 
   const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
     return (
-      <ScrollView>
-        <Text>Calories: {calories}</Text>
-        <Text>Protein: {protein}</Text>
-        <Text>Fat: {fat}</Text>
-        <Text>Cholesterol: {cholesterol}</Text>
-        <Text>Sodium: {sodium}</Text>
-      </ScrollView>
+      <View>
+        <Divider style={{ backgroundColor: "grey" }} />
+        <Text style={styles.nutrientInfo}> Calories: {calories}</Text>
+        <Divider style={{ backgroundColor: "grey" }} />
+        <Text style={styles.nutrientInfo}> Protein: {protein}</Text>
+        <Divider style={{ backgroundColor: "grey" }} />
+        <Text style={styles.nutrientInfo}> Fat: {fat}</Text>
+        <Divider style={{ backgroundColor: "grey" }} />
+        <Text style={styles.nutrientInfo}> Cholesterol: {cholesterol}</Text>
+        <Divider style={{ backgroundColor: "grey" }} />
+        <Text style={styles.nutrientInfo}> Sodium: {sodium}</Text>
+        <Divider style={{ backgroundColor: "grey" }} />
+      </View>
     );
   };
 
@@ -38,6 +47,19 @@ export default function confirmItem({ route, navigation }) {
   React.useEffect(() => {
     filteredData();
   }, []);
+
+  const renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "86%",
+          backgroundColor: "#CED0CE",
+          marginLeft: "14%"
+        }}
+      />
+    );
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -66,6 +88,7 @@ export default function confirmItem({ route, navigation }) {
         <View style={styles.nutrientInformation}>
           <Text style={styles.nutrientTitle}>Nutrients</Text>
           <FlatList
+            ItemSeparatorComponent={renderSeparator}
             data={nutrients}
             renderItem={({ item }) => (
               <NutrientItem
@@ -169,5 +192,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     marginTop: 15,
     alignSelf: "center"
+  },
+  nutrientInfo: {
+    fontSize: 22
   }
 });
