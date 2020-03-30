@@ -1,10 +1,12 @@
 import * as React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
-import { userReport } from "../constants/user-report.data";
 import { Divider } from "react-native-elements";
-export default function ReportScreen() {
-  const [nutrients, setNutrients] = React.useState([...userReport]);
+import { UserContext } from "../context/userData.context";
 
+export default function ReportScreen() {
+ 
+  const userData = React.useContext(UserContext);
+ 
   const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
     return (
       <View>
@@ -27,7 +29,7 @@ export default function ReportScreen() {
       <View style={styles.nutrientInformation}>
         <Text style={styles.nutrientTitle}>Nutrients</Text>
         <FlatList
-          data={nutrients}
+          data={userData}
           renderItem={({ item }) => (
             <NutrientItem
               calories={item.calories}

@@ -17,11 +17,13 @@ import {
 import TabBarMaterial from "../icons/TabBarMaterial";
 import { foodData } from "../constants/food-information.data";
 import { Divider } from "react-native-elements";
+import { UserContext } from "../context/userData.context";
 
-export default function confirmItem({ route, navigation }) {
+export default function ConfirmItem({ route, navigation }) {
   const { title } = route.params;
   const [nutrients, setNutrients] = React.useState([...foodData]);
   const [quantity, setQuantity] = React.useState(1);
+  const userData = React.useContext(UserContext);
 
   const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
     return (
@@ -66,8 +68,30 @@ export default function confirmItem({ route, navigation }) {
 
   const filteredData = () => {
     const queryResult = nutrients.filter(food => food.title === title);
+    
     setNutrients([...queryResult]);
   };
+
+  const updateUserReport = () => {
+
+    let userValues = [...userData];
+
+    let updatedValues = { ...userValues[0] };
+    let nutrientValues = {...nutrients[0]};
+
+    updatedValues.protein += nutrientValues.protein * quantity;
+    updatedValues.calories += nutrientValues.calories * quantity;
+    updatedValues.fat += nutrientValues.fat * quantity;
+    updatedValues.cholesterol += nutrientValues.cholesterol * quantity;
+    updatedValues.sodium += nutrientValues.sodium * quantity;
+
+    userData[0] = updatedValues;
+    
+    console.log(userData);
+
+    
+  };
+
   React.useEffect(() => {
     filteredData();
   }, []);
@@ -93,6 +117,7 @@ export default function confirmItem({ route, navigation }) {
             style={styles.addToJournalSubmit}
             activeOpacity={0.5}
             onPress={() => {
+              updateUserReport();
               navigation.navigate("Search Item");
             }}
           >
@@ -114,6 +139,7 @@ export default function confirmItem({ route, navigation }) {
                 cholesterol={item.cholesterol}
                 sodium={item.sodium}
               />
+              
             )}
             keyExtractor={item => item.id}
           />

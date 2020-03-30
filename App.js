@@ -9,9 +9,12 @@ import addMeal from "./components/addMeal";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import useLinking from "./navigation/useLinking";
 import LandingScreen from "./screens/LandingScreen";
+import ReportScreen from "./screens/ReportScreen";
 import searchItem from "./components/searchItem";
-import confirmItem from "./components/confirmItem";
+import ConfirmItem from "./components/ConfirmItem";
 import addExercise from "./components/addExercise";
+import { UserProvider } from "./context/userData.context";
+
 
 const Stack = createStackNavigator();
 
@@ -21,6 +24,13 @@ export default function App(props) {
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();
   const { getInitialState } = useLinking(containerRef);
+  const [currentUserData, setCurrentUserData] = React.useState([{
+    calories: 0,
+    protein: 0,
+    fat: 0,
+    sodium: 0,
+    cholesterol: 0
+  }]); 
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
@@ -56,7 +66,9 @@ export default function App(props) {
     return null;
   } else {
     return (
+      
       <View style={styles.container}>
+
         {/* {Platform.OS === "ios" && <StatusBar barStyle="default" />} */}
 
         {isLandingPageOpen ? (
@@ -66,13 +78,15 @@ export default function App(props) {
             ref={containerRef}
             initialState={initialNavigationState}
           >
-            <Stack.Navigator>
-              <Stack.Screen name="Root" component={BottomTabNavigator} />
-              <Stack.Screen name="Add Meal" component={addMeal} />
-              <Stack.Screen name="Search Item" component={searchItem} />
-              <Stack.Screen name="Confirm Item" component={confirmItem} />
-              <Stack.Screen name="Add Excercise" component={addExercise} />
-            </Stack.Navigator>
+            <UserProvider value={currentUserData}>
+              <Stack.Navigator>
+                <Stack.Screen name="Root" component={BottomTabNavigator} />
+                <Stack.Screen name="Add Meal" component={addMeal} />
+                <Stack.Screen name="Search Item" component={searchItem} />
+                <Stack.Screen name="Confirm Item" component={ConfirmItem} />
+                <Stack.Screen name="Add Excercise" component={addExercise} />
+              </Stack.Navigator>
+            </UserProvider>
           </NavigationContainer>
         )}
       </View>
