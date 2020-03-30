@@ -14,6 +14,9 @@ import ConfirmItem from "./components/ConfirmItem";
 import addExercise from "./components/addExercise";
 import { UserProvider } from "./context/userData.context";
 import ConfirmExercise from "./components/ConfirmExercise";
+import updateItem from "./components/updateItem";
+import Recipe from "./components/Recipe";
+
 const Stack = createStackNavigator();
 
 export default function App(props) {
@@ -83,6 +86,8 @@ export default function App(props) {
                 <Stack.Screen name="Search Item" component={searchItem} />
                 <Stack.Screen name="Confirm Item" component={ConfirmItem} />
                 <Stack.Screen name="Add Exercise" component={addExercise} />
+                <Stack.Screen name="Update Item" component={updateItem} />
+                <Stack.Screen name="Recipe" component={Recipe} />
                 <Stack.Screen
                   name="Confirm Exercise"
                   component={ConfirmExercise}
