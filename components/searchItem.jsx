@@ -57,7 +57,7 @@ export default function searchItem({ navigation }) {
               )
             ) : (
               <View style={styles.addIcon}>
-                <TabBarMaterial name="library-books" color="black" />
+                <TabBarMaterial name="book" color="black" />
               </View>
             )}
           </View>
