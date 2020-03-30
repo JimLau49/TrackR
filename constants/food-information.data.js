@@ -3,7 +3,7 @@ export const foodData = [
     id: "1",
     title: "First Item",
     calorieInfo: "230kcal - 1 serving (270g)",
-    calories: "30kCal",
+    calories: 30,
     protein: "6.7g",
     fat: "3g",
     sodium: "4mg",

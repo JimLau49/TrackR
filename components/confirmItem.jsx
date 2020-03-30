@@ -21,12 +21,17 @@ import { Divider } from "react-native-elements";
 export default function confirmItem({ route, navigation }) {
   const { title } = route.params;
   const [nutrients, setNutrients] = React.useState([...foodData]);
+  const [quantity, setQuantity] = React.useState(1);
 
   const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
     return (
       <View>
         <Divider style={{ backgroundColor: "grey" }} />
-        <Text style={styles.nutrientInfo}> Calories: {calories}</Text>
+        <Text style={styles.nutrientInfo}>
+          {" "}
+          Calories:{" "}
+          {quantity === 0 || isNaN(quantity) ? calories : calories * quantity} g
+        </Text>
         <Divider style={{ backgroundColor: "grey" }} />
         <Text style={styles.nutrientInfo}> Protein: {protein}</Text>
         <Divider style={{ backgroundColor: "grey" }} />
@@ -61,6 +66,10 @@ export default function confirmItem({ route, navigation }) {
     );
   };
 
+  const onChangeText = userValue => {
+    setQuantity(userValue);
+  };
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topBanner}>
@@ -73,11 +82,17 @@ export default function confirmItem({ route, navigation }) {
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.addComponent}>
           <Text style={styles.quantity}>Quantity</Text>
-          <TextInput style={styles.numPad} keyboardType="number-pad" />
+          <TextInput
+            style={styles.numPad}
+            keyboardType="number-pad"
+            onChangeText={quantity => onChangeText(parseInt(quantity))}
+          />
           <TouchableOpacity
             style={styles.addToJournalSubmit}
             activeOpacity={0.5}
-            onPress={() => navigation.navigate("Search Item")}
+            onPress={() => {
+              navigation.navigate("Search Item");
+            }}
           >
             <Text style={styles.addToJournalTextStyle}> Add to journal </Text>
           </TouchableOpacity>
