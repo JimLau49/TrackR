@@ -18,13 +18,24 @@ import {
 
 export default function ConfirmExercise({ navigation, route }) {
   const { title } = route.params;
+  const [pickerValue, setPickerValue] = React.useState();
+
+  const setSelectedValue = itemIndex => {
+    setPickerValue(itemIndex);
+  };
+
   return (
     <View style={styles.mainContainer}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.addComponent}>
           <Text style={styles.title}>{title}</Text>
           <TextInput style={styles.numPad} keyboardType="number-pad" />
-          <Picker>
+          <Picker
+            selectedValue={pickerValue}
+            onValueChange={pickerValue => {
+              setSelectedValue(pickerValue);
+            }}
+          >
             <Picker.Item label="Minutes" value="1" />
             <Picker.Item label="Hours" value="60" />
           </Picker>
@@ -71,11 +82,11 @@ const styles = StyleSheet.create({
   numPad: {
     fontSize: 22,
     marginTop: "2%",
-    marginStart: "9%",
     backgroundColor: "white",
-    width: "20%",
+    width: "40%",
     height: "8%",
-    textAlign: "center"
+    textAlign: "center",
+    alignSelf: "center"
   },
   quantity: {
     marginTop: "5%",
