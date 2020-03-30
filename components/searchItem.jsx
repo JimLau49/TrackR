@@ -35,26 +35,31 @@ export default function searchItem({ navigation }) {
     return (
       <TouchableOpacity
         onPress={() => {
-          userInput !== "" ? 
-            addedToJournal == false ? 
-            navigation.navigate("Confirm Item", { title: title}) :
-            navigation.navigate("Update Item", { title: title})
-            
-          : navigation.navigate("Recipe", { title: title})
+          userInput !== ""
+            ? addedToJournal == false
+              ? navigation.navigate("Confirm Item", { title: title })
+              : navigation.navigate("Update Item", { title: title })
+            : navigation.navigate("Recipe", { title: title });
         }}
       >
         <View style={styles.item}>
           <View style={styles.itemContainer}>
             <Text style={styles.title}>{title}</Text>
-            { addedToJournal == false ? 
+            {userInput !== "" ? (
+              addedToJournal == false ? (
+                <View style={styles.addIcon}>
+                  <TabBarMaterial name="add-circle" color="black" />
+                </View>
+              ) : (
+                <View style={styles.addIcon}>
+                  <TabBarAntDesign name="checkcircle" color="black" />
+                </View>
+              )
+            ) : (
               <View style={styles.addIcon}>
-                <TabBarMaterial name="add-circle" color="black" />
-              </View>:
-              <View style={styles.addIcon}>
-                <TabBarAntDesign name="checkcircle" color="black" />
+                <TabBarMaterial name="library-books" color="black" />
               </View>
-             }
-            
+            )}
           </View>
           <Text style={styles.calorieInfo}>{calorieInfo}</Text>
         </View>

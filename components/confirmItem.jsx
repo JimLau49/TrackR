@@ -19,7 +19,6 @@ import { foodData } from "../constants/food-information.data";
 import { Divider } from "react-native-elements";
 import { UserContext } from "../context/userData.context";
 
-
 export default function ConfirmItem({ route, navigation }) {
   const { title, id } = route.params;
   const [nutrients, setNutrients] = React.useState([...foodData]);

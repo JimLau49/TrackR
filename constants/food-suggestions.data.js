@@ -1,7 +1,7 @@
 export const foodSuggestions = [
   {
     id: "1",
-    title: "Pasta",
+    title: "Pasta Cabonara",
     calorieInfo: "230kcal - 1 serving (270g)",
     calories: 30,
     protein: 6.7,
