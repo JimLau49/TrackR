@@ -68,16 +68,15 @@ export default function ConfirmItem({ route, navigation }) {
 
   const filteredData = () => {
     const queryResult = nutrients.filter(food => food.title === title);
-    
+
     setNutrients([...queryResult]);
   };
 
   const updateUserReport = () => {
-
     let userValues = [...userData];
 
     let updatedValues = { ...userValues[0] };
-    let nutrientValues = {...nutrients[0]};
+    let nutrientValues = { ...nutrients[0] };
 
     updatedValues.protein += nutrientValues.protein * quantity;
     updatedValues.calories += nutrientValues.calories * quantity;
@@ -86,7 +85,6 @@ export default function ConfirmItem({ route, navigation }) {
     updatedValues.sodium += nutrientValues.sodium * quantity;
 
     userData[0] = updatedValues;
-    
   };
 
   React.useEffect(() => {
@@ -136,7 +134,6 @@ export default function ConfirmItem({ route, navigation }) {
                 cholesterol={item.cholesterol}
                 sodium={item.sodium}
               />
-              
             )}
             keyExtractor={item => item.id}
           />

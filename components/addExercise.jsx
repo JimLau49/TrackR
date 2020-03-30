@@ -10,10 +10,10 @@ import {
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import TabBarMaterial from "../icons/TabBarMaterial";
-import { foodData } from "../constants/food-information.data";
+import { exerciseInfo } from "../constants/excercise-information.data";
 export default function searchItem({ navigation }) {
   const [userInput, setUserInput] = React.useState("");
-  const [autocomplete, setAutocomplete] = React.useState([...foodData]);
+  const [autocomplete, setAutocomplete] = React.useState([...exerciseInfo]);
 
   const updateSearchValues = (text, matchingFoods) => {
     let sanitizedText = text.toLowerCase();
@@ -32,7 +32,7 @@ export default function searchItem({ navigation }) {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Confirm Item", { title: title });
+          navigation.navigate("Confirm Exercise", { title: title });
         }}
       >
         <View style={styles.item}>
@@ -42,7 +42,7 @@ export default function searchItem({ navigation }) {
               <TabBarMaterial name="add-circle" color="black" />
             </View>
           </View>
-          <Text style={styles.calorieInfo}>{calorieInfo}</Text>
+          <Text style={styles.calorieInfo}>{calorieInfo}kCal</Text>
         </View>
       </TouchableOpacity>
     );
@@ -54,7 +54,7 @@ export default function searchItem({ navigation }) {
         placeholder="Type Here..."
         value={userInput}
         onClear={clearSearch}
-        onChangeText={userInput => updateSearchValues(userInput, foodData)}
+        onChangeText={userInput => updateSearchValues(userInput, exerciseInfo)}
       />
       {userInput !== "" ? (
         <FlatList
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   title: {
-    fontSize: 30
+    fontSize: 22
   },
   addIcon: {
     alignItems: "flex-end",

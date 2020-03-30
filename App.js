@@ -13,7 +13,7 @@ import searchItem from "./components/searchItem";
 import ConfirmItem from "./components/ConfirmItem";
 import addExercise from "./components/addExercise";
 import { UserProvider } from "./context/userData.context";
-
+import ConfirmExercise from "./components/ConfirmExercise";
 const Stack = createStackNavigator();
 
 export default function App(props) {
@@ -83,6 +83,10 @@ export default function App(props) {
                 <Stack.Screen name="Search Item" component={searchItem} />
                 <Stack.Screen name="Confirm Item" component={ConfirmItem} />
                 <Stack.Screen name="Add Excercise" component={addExercise} />
+                <Stack.Screen
+                  name="Confirm Exercise"
+                  component={ConfirmExercise}
+                />
               </Stack.Navigator>
             </UserProvider>
           </NavigationContainer>

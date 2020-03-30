@@ -7,14 +7,16 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+import { UserContext } from "../context/userData.context";
 
 export default function HomeScreen({ navigation }) {
-  const [calories, setCalories] = React.useState(1000);
+  const [calories, setCalories] = React.useState(0);
+  const userData = React.useContext(UserContext);
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topContainer}>
         <View style={styles.calorieCounter}>
-          <Text style={styles.h1}>{calories}</Text>
+          <Text style={styles.h1}>{userData[0].calories}</Text>
           <Text style={styles.h3}>kCal</Text>
         </View>
         <Text style={styles.h2}>Net Calories</Text>
