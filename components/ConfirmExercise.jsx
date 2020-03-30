@@ -11,12 +11,40 @@ import {
   Dimensions,
   TextInput,
   ScrollView,
+  Picker,
   View,
   FlatList
 } from "react-native";
 
-export default function ConfirmExercise({ navigation }) {
-  return <View style={styles.mainContainer}></View>;
+export default function ConfirmExercise({ navigation, route }) {
+  const { title } = route.params;
+  return (
+    <View style={styles.mainContainer}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={styles.addComponent}>
+          <Text style={styles.title}>{title}</Text>
+          <TextInput style={styles.numPad} keyboardType="number-pad" />
+          <Picker>
+            <Picker.Item label="Minutes" value="1" />
+            <Picker.Item label="Hours" value="60" />
+          </Picker>
+          <TouchableOpacity
+            style={styles.addToJournalSubmit}
+            activeOpacity={0.5}
+            onPress={() => {
+              updateUserReport();
+              navigation.navigate("Search Item");
+            }}
+          >
+            <Text style={styles.addToJournalTextStyle}> Add to journal </Text>
+          </TouchableOpacity>
+        </View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={{ flex: 1 }}></View>
+      </TouchableWithoutFeedback>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -33,7 +61,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    alignSelf: "center"
+    alignSelf: "center",
+    marginTop: "15%",
+    marginBottom: "5%"
   },
   addComponent: {
     flex: 0.4
@@ -44,7 +74,7 @@ const styles = StyleSheet.create({
     marginStart: "9%",
     backgroundColor: "white",
     width: "20%",
-    height: "15%",
+    height: "8%",
     textAlign: "center"
   },
   quantity: {
