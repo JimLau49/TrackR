@@ -4,12 +4,12 @@ import { Divider } from "react-native-elements";
 import { UserContext } from "../context/userData.context";
 
 export default function ReportScreen() {
- 
   const userData = React.useContext(UserContext);
- 
+
   const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
     return (
       <View>
+        <Divider style={{ backgroundColor: "grey" }} />
         <Text style={styles.nutrientInfo}>Calories: {calories}kCal</Text>
         <Divider style={{ backgroundColor: "grey" }} />
         <Text style={styles.nutrientInfo}>Protein: {protein}g</Text>
