@@ -82,7 +82,7 @@ export default function App(props) {
                 <Stack.Screen name="Add Meal" component={addMeal} />
                 <Stack.Screen name="Search Item" component={searchItem} />
                 <Stack.Screen name="Confirm Item" component={ConfirmItem} />
-                <Stack.Screen name="Add Excercise" component={addExercise} />
+                <Stack.Screen name="Add Exercise" component={addExercise} />
                 <Stack.Screen
                   name="Confirm Exercise"
                   component={ConfirmExercise}

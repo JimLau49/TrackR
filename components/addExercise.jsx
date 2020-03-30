@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import TabBarMaterial from "../icons/TabBarMaterial";
-import { exerciseInfo } from "../constants/excercise-information.data";
+import { exerciseInfo } from "../constants/exercise-information.data";
 export default function searchItem({ navigation }) {
   const [userInput, setUserInput] = React.useState("");
   const [autocomplete, setAutocomplete] = React.useState([...exerciseInfo]);

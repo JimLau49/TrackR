@@ -43,8 +43,7 @@ export default function ConfirmExercise({ navigation, route }) {
             style={styles.addToJournalSubmit}
             activeOpacity={0.5}
             onPress={() => {
-              updateUserReport();
-              navigation.navigate("Search Item");
+              navigation.navigate("Add Exercise");
             }}
           >
             <Text style={styles.addToJournalTextStyle}> Add to journal </Text>
