@@ -66,10 +66,6 @@ export default function confirmItem({ route, navigation }) {
     );
   };
 
-  const onChangeText = userValue => {
-    setQuantity(userValue);
-  };
-
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topBanner}>
@@ -85,7 +81,7 @@ export default function confirmItem({ route, navigation }) {
           <TextInput
             style={styles.numPad}
             keyboardType="number-pad"
-            onChangeText={quantity => onChangeText(parseInt(quantity))}
+            onChangeText={quantity => setQuantity(parseInt(quantity))}
           />
           <TouchableOpacity
             style={styles.addToJournalSubmit}
