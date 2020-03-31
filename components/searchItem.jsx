@@ -6,13 +6,18 @@ import {
   Text,
   TouchableOpacity,
   View,
-  FlatList
+  FlatList,
+  Alert
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import TabBarMaterial from "../icons/TabBarMaterial";
 import TabBarAntDesign from "../icons/TabBarAntDesign";
 import { foodData } from "../constants/food-information.data";
 import { foodSuggestions } from "../constants/food-suggestions.data";
+import BarCodeScanner from "../components/barCodeScanner";
+import BarCodeButton from "./BarCodeButton";
+import barCodeScanner from "../components/barCodeScanner";
+
 export default function searchItem({ navigation }) {
   const [userInput, setUserInput] = React.useState("");
   const [autocomplete, setAutocomplete] = React.useState([...foodData]);
@@ -31,17 +36,20 @@ export default function searchItem({ navigation }) {
     setUserInput("");
   };
 
+  const alertThis = () => {
+    return <Alert>sup</Alert>;
+  };
+
   const Item = ({ id, title, calorieInfo, addedToJournal }) => {
     return (
       <TouchableOpacity
         onPress={() => {
           clearSearch();
           userInput !== ""
-            ? addedToJournal == false 
-              ? navigation.navigate("Confirm Item", { title: title }) 
-
+            ? addedToJournal == false
+              ? navigation.navigate("Confirm Item", { title: title })
               : navigation.navigate("Update Item", { title: title })
-            : navigation.navigate("Recipe", { title: title }) 
+            : navigation.navigate("Recipe", { title: title });
         }}
       >
         <View style={styles.item}>
@@ -107,6 +115,7 @@ export default function searchItem({ navigation }) {
           />
         </>
       )}
+      <BarCodeButton onScanButtonPress={barCodeScanner} />
     </View>
   );
 }
