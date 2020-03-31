@@ -25,29 +25,18 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.mainCircle}>
           <Image source={require("../assets/images/mainCircle.png")} />
         </View>
-        <View
-          style={{
-            width: "20%",
-            zIndex: 3,
-
-            justifyContent: "flex-start"
-          }}
-        >
-          <Text style={{ color: "black", fontSize: 22 }}>
-            Current Weight: 130lbs
-          </Text>
-        </View>
-        <View
-          style={{
-            width: "20%",
-            zIndex: 3,
-
-            justifyContent: "flex-end"
-          }}
-        >
-          <Text style={{ color: "black", fontSize: 22 }}>
-            Desired weight: 155lbs
-          </Text>
+        <View style={{flexDirection: "row", top: 25, marginLeft: 25}}>
+          
+            <Text style={{ color: "white", fontSize: 20, flex: 5}}>
+            Current{"\n"}Weight:{"\n"}130lbs
+            </Text>
+          
+          
+            <Text style={{ color: "white", fontSize: 20, textAlign:"center", flex: 2}}>
+            Goal{"\n"}Weight:{"\n"}155lbs
+            </Text>
+          
+          
         </View>
       </View>
 
