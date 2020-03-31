@@ -14,10 +14,12 @@ export default function barCodeScanner({ navigation }) {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = () => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    navigation.navigate("Confirm Item", { title: "Pasta" });
+    alert(`Bar code scanned succesfully!`);
+    setTimeout(() => {
+      navigation.navigate("Confirm Item", { title: "Pasta" });
+    }, 500);
   };
 
   if (hasPermission === null) {
