@@ -24,6 +24,7 @@ To run this react-native application and start development:
 
 1. Calorie Counter that updates when Meals are added and Exercise is done
 	
+![Home](https://imgur.com/WO4gkIh)	
 
 2. Barcode Scanner to detect food items
 
