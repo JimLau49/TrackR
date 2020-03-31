@@ -21,7 +21,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: "Me",
           tabBarIcon: ({ focused }) => (
-            <TabBarMaterialCommunity focused={focused} name="face" />
+            <TabBarMaterialCommunity focused={focused} name="face" size={30} />
           )
         }}
       />
@@ -34,6 +34,7 @@ export default function BottomTabNavigator({ navigation, route }) {
             <TabBarMaterialCommunity
               focused={focused}
               name="file-document-outline"
+              size={30}
             />
           )
         }}

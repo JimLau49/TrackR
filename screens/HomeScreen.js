@@ -12,15 +12,16 @@ import { Button } from "react-native-elements";
 import TabBarAntDesign from "../icons/TabBarAntDesign";
 
 export default function HomeScreen({ navigation }) {
-  
-  const {currentUserData} = React.useContext(UserContext);
-  
+  const { currentUserData } = React.useContext(UserContext);
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topContainer}>
-        <View style={styles.calendar}>  
+        <View style={styles.calendar}>
           <TabBarAntDesign name="left" size={20} />
-          <Text style={{fontSize: 16}}>{"  "}Today, 14 Mar{"  "}</Text>
+          <Text style={{ fontSize: 16 }}>
+            {"  "}Today, 14 Mar{"  "}
+          </Text>
           <TabBarAntDesign name="right" size={20} />
         </View>
 
@@ -32,18 +33,21 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.mainCircle}>
           <Image source={require("../assets/images/mainCircle.png")} />
         </View>
-        <View style={{flexDirection: "row", top: 25, marginLeft: 25}}>
-          
-            <Text style={{ color: "white", fontSize: 20, flex: 5}}>
+        <View style={{ flexDirection: "row", top: 25, marginLeft: 25 }}>
+          <Text style={{ color: "white", fontSize: 20, flex: 5 }}>
             Current{"\n"}Weight:{"\n"}130lbs
-            </Text>
-          
-          
-            <Text style={{ color: "white", fontSize: 20, textAlign:"center", flex: 2}}>
+          </Text>
+
+          <Text
+            style={{
+              color: "white",
+              fontSize: 20,
+              textAlign: "center",
+              flex: 2
+            }}
+          >
             Goal{"\n"}Weight:{"\n"}155lbs
-            </Text>
-          
-          
+          </Text>
         </View>
       </View>
 
@@ -182,9 +186,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: "2%"
   },
-  calendar:{
+  calendar: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: "10%"
+    marginTop: "4%"
   }
 });
