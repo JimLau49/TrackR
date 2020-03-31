@@ -4,19 +4,18 @@ import {
   Platform,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   FlatList,
   Alert
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import TabBarMaterial from "../icons/TabBarMaterial";
-import TabBarAntDesign from "../icons/TabBarAntDesign";
+import TabBarAntDesgin from "../icons/TabBarAntDesign";
 import { foodData } from "../constants/food-information.data";
 import { foodSuggestions } from "../constants/food-suggestions.data";
-import BarCodeScanner from "../components/barCodeScanner";
-import BarCodeButton from "./BarCodeButton";
-import barCodeScanner from "../components/barCodeScanner";
+import { BarCodeScanner } from "expo-barcode-scanner";
+import * as Permissions from "expo-permissions";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function searchItem({ navigation }) {
   const [userInput, setUserInput] = React.useState("");
@@ -36,8 +35,18 @@ export default function searchItem({ navigation }) {
     setUserInput("");
   };
 
-  const alertThis = () => {
-    return <Alert>sup</Alert>;
+  const ScanButton = () => {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity
+          testID="locationButton"
+          style={styles.button}
+          onPress={() => navigation.navigate("Camera")}
+        >
+          <TabBarAntDesgin name="barcode" size={32} />
+        </TouchableOpacity>
+      </View>
+    );
   };
 
   const Item = ({ id, title, calorieInfo, addedToJournal }) => {
@@ -115,7 +124,7 @@ export default function searchItem({ navigation }) {
           />
         </>
       )}
-      <BarCodeButton onScanButtonPress={barCodeScanner} />
+      <ScanButton />
     </View>
   );
 }
@@ -156,5 +165,20 @@ const styles = StyleSheet.create({
     fontSize: 22,
     alignSelf: "center",
     marginTop: "5%"
+  },
+  container: {
+    position: "absolute",
+    bottom: 30,
+    right: 10
+  },
+  button: {
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.2)",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 60,
+    height: 60,
+    backgroundColor: "#fff",
+    borderRadius: 50
   }
 });
