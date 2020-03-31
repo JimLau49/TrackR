@@ -24,7 +24,7 @@ export default function updateItem({ route, navigation }) {
   const { title, id } = route.params;
   const [nutrients, setNutrients] = React.useState([...foodData]);
   const [quantity, setQuantity] = React.useState(1);
-  const userData = React.useContext(UserContext);
+  const { currentUserData } = React.useContext(UserContext);
 
   const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
     return (
@@ -74,8 +74,7 @@ export default function updateItem({ route, navigation }) {
   };
 
   const updateUserReport = () => {
-    let userValues = [...userData];
-
+    let userValues = [...currentUserData];
     let updatedValues = { ...userValues[0] };
     let nutrientValues = { ...nutrients[0] };
 
@@ -85,7 +84,7 @@ export default function updateItem({ route, navigation }) {
     updatedValues.cholesterol += nutrientValues.cholesterol * quantity;
     updatedValues.sodium += nutrientValues.sodium * quantity;
 
-    userData[0] = updatedValues;
+    currentUserData[0] = updatedValues;
   };
 
   React.useEffect(() => {
@@ -110,29 +109,45 @@ export default function updateItem({ route, navigation }) {
             onChangeText={quantity => setQuantity(parseInt(quantity))}
           />
           <View style={styles.buttons}>
-                <TouchableOpacity
-                    style={{marginLeft: 36, width: 150}}
-                    activeOpacity={0.5}
-                    
-                >
-                <Button onPress={() => {
-                    updateUserReport();
-                    navigation.navigate("Search Item");
-                    }}
-                    color="black" title="Update" buttonStyle={{  opacity: 0.8, backgroundColor: "#EC3535", borderRadius: 20, borderWidth: 1, borderColor: "#EC3535" 
-                }} containerStyle={{ flex: 1 }}/>
-                </TouchableOpacity>
-                
-                <TouchableOpacity
-                    style={{ width: 180}}
-                    activeOpacity={0.5}
-                >
-                <Button onPress={() => {
-                    updateUserReport();
-                    navigation.navigate("Search Item");
-                    }}title="Delete" buttonStyle={{  opacity: 0.8, backgroundColor: "#EC3535", borderRadius: 20, borderWidth: 1, borderColor: "#EC3535"}}  containerStyle={{ flex: 1, marginLeft: 20 
-                    }} />
-                </TouchableOpacity>
+            <TouchableOpacity
+              style={{ marginLeft: 36, width: 150 }}
+              activeOpacity={0.5}
+            >
+              <Button
+                onPress={() => {
+                  updateUserReport();
+                  navigation.navigate("Search Item");
+                }}
+                color="black"
+                title="Update"
+                buttonStyle={{
+                  opacity: 0.8,
+                  backgroundColor: "#EC3535",
+                  borderRadius: 20,
+                  borderWidth: 1,
+                  borderColor: "#EC3535"
+                }}
+                containerStyle={{ flex: 1 }}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={{ width: 180 }} activeOpacity={0.5}>
+              <Button
+                onPress={() => {
+                  updateUserReport();
+                  navigation.navigate("Search Item");
+                }}
+                title="Delete"
+                buttonStyle={{
+                  opacity: 0.8,
+                  backgroundColor: "#EC3535",
+                  borderRadius: 20,
+                  borderWidth: 1,
+                  borderColor: "#EC3535"
+                }}
+                containerStyle={{ flex: 1, marginLeft: 20 }}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -226,7 +241,7 @@ const styles = StyleSheet.create({
     fontSize: 22
   },
   buttons: {
-    flexDirection: 'row',
+    flexDirection: "row",
     flex: 1,
     top: 20
   },
@@ -234,6 +249,5 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     fontSize: 22
-  },
-  
+  }
 });

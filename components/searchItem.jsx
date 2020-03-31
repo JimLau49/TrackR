@@ -71,7 +71,7 @@ export default function searchItem({ navigation }) {
                 </View>
               ) : (
                 <View style={styles.addIcon}>
-                  <TabBarAntDesign name="checkcircle" color="black" />
+                  <TabBarAntDesign name="checkcircle" color="black" />;
                 </View>
               )
             ) : (
