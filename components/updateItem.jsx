@@ -1,16 +1,11 @@
 import * as React from "react";
 import {
-  Image,
-  Platform,
-  Device,
   StyleSheet,
   Text,
   Keyboard,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Dimensions,
   TextInput,
-  ScrollView,
   View,
   FlatList
 } from "react-native";
@@ -21,10 +16,10 @@ import { UserContext } from "../context/userData.context";
 import { Button } from "react-native-elements";
 
 export default function updateItem({ route, navigation }) {
-  const { title, id } = route.params;
+  const { title } = route.params;
   const [nutrients, setNutrients] = React.useState([...foodData]);
   const [quantity, setQuantity] = React.useState(1);
-  const { currentUserData } = React.useContext(UserContext);
+  const { currentUserData, userDataUpdated } = React.useContext(UserContext);
 
   const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
     return (
@@ -74,6 +69,7 @@ export default function updateItem({ route, navigation }) {
   };
 
   const updateUserReport = () => {
+  
     let userValues = [...currentUserData];
     let updatedValues = { ...userValues[0] };
     let nutrientValues = { ...nutrients[0] };
@@ -85,6 +81,23 @@ export default function updateItem({ route, navigation }) {
     updatedValues.sodium += nutrientValues.sodium * quantity;
 
     currentUserData[0] = updatedValues;
+    userDataUpdated(currentUserData);
+  };
+
+  const deleteUserReport = () => {
+    nutrients[0].added = false;
+    let userValues = [...currentUserData];
+    let updatedValues = { ...userValues[0] };
+    let nutrientValues = { ...nutrients[0] };
+
+    updatedValues.protein -= nutrientValues.protein * quantity;
+    updatedValues.calories -= nutrientValues.calories * quantity;
+    updatedValues.fat -= nutrientValues.fat * quantity;
+    updatedValues.cholesterol -= nutrientValues.cholesterol * quantity;
+    updatedValues.sodium -= nutrientValues.sodium * quantity;
+
+    currentUserData[0] = updatedValues;
+    userDataUpdated(currentUserData);
   };
 
   React.useEffect(() => {
@@ -134,7 +147,7 @@ export default function updateItem({ route, navigation }) {
             <TouchableOpacity style={{ width: 180 }} activeOpacity={0.5}>
               <Button
                 onPress={() => {
-                  updateUserReport();
+                  deleteUserReport();
                   navigation.navigate("Search Item");
                 }}
                 title="Delete"

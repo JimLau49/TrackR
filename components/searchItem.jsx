@@ -1,20 +1,15 @@
 import * as React from "react";
 import {
-  Image,
-  Platform,
   StyleSheet,
   Text,
   View,
   FlatList,
-  Alert
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import TabBarMaterial from "../icons/TabBarMaterial";
-import TabBarAntDesgin from "../icons/TabBarAntDesign";
+import TabBarAntDesign from "../icons/TabBarAntDesign";
 import { foodData } from "../constants/food-information.data";
 import { foodSuggestions } from "../constants/food-suggestions.data";
-import { BarCodeScanner } from "expo-barcode-scanner";
-import * as Permissions from "expo-permissions";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function searchItem({ navigation }) {
@@ -43,7 +38,7 @@ export default function searchItem({ navigation }) {
           style={styles.button}
           onPress={() => navigation.navigate("Camera")}
         >
-          <TabBarAntDesgin name="barcode" size={32} />
+          <TabBarAntDesign name="barcode" size={32} />
         </TouchableOpacity>
       </View>
     );
@@ -71,7 +66,7 @@ export default function searchItem({ navigation }) {
                 </View>
               ) : (
                 <View style={styles.addIcon}>
-                  <TabBarAntDesign name="checkcircle" color="black" />;
+                  <TabBarAntDesign name="checkcircle" color="black" />
                 </View>
               )
             ) : (

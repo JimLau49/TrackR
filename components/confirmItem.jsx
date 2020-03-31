@@ -1,16 +1,11 @@
 import * as React from "react";
 import {
-  Image,
-  Platform,
-  Device,
   StyleSheet,
   Text,
   Keyboard,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Dimensions,
   TextInput,
-  ScrollView,
   View,
   FlatList
 } from "react-native";
@@ -88,6 +83,7 @@ export default function ConfirmItem({ route, navigation }) {
 
     currentUserData[0] = updatedValues;
     userDataUpdated(currentUserData);
+    console.log(nutrients[0]);
   };
 
   React.useEffect(() => {
