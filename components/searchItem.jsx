@@ -1,12 +1,8 @@
 import * as React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-} from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import { SearchBar } from "react-native-elements";
-import TabBarMaterial from "../icons/TabBarMaterial";
+import TabBarMaterial from "../icons/TabBarMaterialCommunity";
+import TabBarMaterialIcons from "../icons/TabBarMaterial";
 import TabBarAntDesign from "../icons/TabBarAntDesign";
 import { foodData } from "../constants/food-information.data";
 import { foodSuggestions } from "../constants/food-suggestions.data";
@@ -38,7 +34,7 @@ export default function searchItem({ navigation }) {
           style={styles.button}
           onPress={() => navigation.navigate("Camera")}
         >
-          <TabBarAntDesign name="barcode" size={32} />
+          <TabBarMaterial name="barcode-scan" size={32} color={"black"} />
         </TouchableOpacity>
       </View>
     );
@@ -62,7 +58,7 @@ export default function searchItem({ navigation }) {
             {userInput !== "" ? (
               addedToJournal == false ? (
                 <View style={styles.addIcon}>
-                  <TabBarMaterial name="add-circle" color="black" />
+                  <TabBarMaterialIcons name="add-circle" color="black" />
                 </View>
               ) : (
                 <View style={styles.addIcon}>
@@ -71,7 +67,7 @@ export default function searchItem({ navigation }) {
               )
             ) : (
               <View style={styles.addIcon}>
-                <TabBarMaterial name="book" color="black" />
+                <TabBarMaterialIcons name="book" color="black" />
               </View>
             )}
           </View>
