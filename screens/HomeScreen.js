@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { UserContext } from "../context/userData.context";
 import { Button } from "react-native-elements";
-import TabBarMaterial from "../icons/TabBarMaterial";
+import TabBarAntDesign from "../icons/TabBarAntDesign";
 
 export default function HomeScreen({ navigation }) {
   
@@ -18,6 +18,12 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topContainer}>
+        <View style={styles.calendar}>  
+          <TabBarAntDesign name="left" size={20} />
+          <Text style={{fontSize: 16}}>{"  "}Today, 14 Mar{"  "}</Text>
+          <TabBarAntDesign name="right" size={20} />
+        </View>
+
         <View style={styles.calorieCounter}>
           <Text style={styles.h1}>{currentUserData[0].calories}</Text>
           <Text style={styles.h3}>kCal</Text>
@@ -161,7 +167,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignSelf: "center",
     zIndex: 3,
-    marginTop: "15%"
+    marginTop: "3%"
   },
   addMeal: {
     position: "absolute",
@@ -175,5 +181,10 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     marginTop: "2%"
+  },
+  calendar:{
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: "10%"
   }
 });

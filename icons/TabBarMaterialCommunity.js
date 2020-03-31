@@ -7,7 +7,7 @@ export default function TabBarMaterial(props) {
   return (
     <MaterialCommunityIcons
       name={props.name}
-      size={30}
+      size={props.size}
       style={{ marginBottom: -3 }}
       color={props.focused ? Colors.tabIconSelected : "black"}
     />

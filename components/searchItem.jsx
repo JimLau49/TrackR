@@ -34,7 +34,7 @@ export default function searchItem({ navigation }) {
           style={styles.button}
           onPress={() => navigation.navigate("Camera")}
         >
-          <TabBarMaterial name="barcode-scan" size={32} color={"black"} />
+          <TabBarMaterial name="barcode-scan" size={40} color={"black"} />
         </TouchableOpacity>
       </View>
     );
@@ -62,7 +62,7 @@ export default function searchItem({ navigation }) {
                 </View>
               ) : (
                 <View style={styles.addIcon}>
-                  <TabBarAntDesign name="checkcircle" color="black" />
+                  <TabBarAntDesign name="checkcircle" color="black" size={40}/>
                 </View>
               )
             ) : (

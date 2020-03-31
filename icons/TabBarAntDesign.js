@@ -5,7 +5,7 @@ export default function TabBarMaterialIcons(props) {
   return (
     <AntDesign
       name={props.name}
-      size={40}
+      size={props.size}
       style={{ marginBottom: -2 }}
       color="black"
     />
