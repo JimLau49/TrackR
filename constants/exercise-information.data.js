@@ -14,19 +14,19 @@ export const exerciseInfo = [
   {
     id: "3",
     title: "Swimming - Moderate",
-    calorieInfo: -320,
+    calorieInfo: -220,
     added: false
   },
   {
     id: "4",
     title: "Badminton - Moderate",
-    calorieInfo: -460,
+    calorieInfo: -100,
     added: false
   },
   {
     id: "5",
     title: "Badminton - Intense",
-    calorieInfo: -230,
+    calorieInfo: -220,
     added: false
   }
 ];

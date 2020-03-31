@@ -83,7 +83,6 @@ export default function ConfirmItem({ route, navigation }) {
 
     currentUserData[0] = updatedValues;
     userDataUpdated(currentUserData);
-    console.log(nutrients[0]);
   };
 
   React.useEffect(() => {

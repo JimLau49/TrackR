@@ -40,7 +40,7 @@ export default function searchItem({ navigation }) {
           navigation.navigate("Confirm Exercise", { title: title });
         }}
       >
-         <View style={styles.item}>
+        <View style={styles.item}>
           <View style={styles.itemContainer}>
             <Text style={styles.title}>{title}</Text>
             {userInput !== "" ? (
@@ -59,7 +59,7 @@ export default function searchItem({ navigation }) {
               </View>
             )}
           </View>
-          <Text style={styles.calorieInfo}>{calorieInfo}</Text>
+          <Text style={styles.calorieInfo}>{calorieInfo}kCal/Hour</Text>
         </View>
       </TouchableOpacity>
     );
