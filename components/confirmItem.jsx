@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     borderColor: "#fff"
   },
   addToJournalTextStyle: {
-    color: "black",
+    color: "white",
     textAlign: "center",
     fontSize: 22
   },

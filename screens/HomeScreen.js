@@ -8,6 +8,8 @@ import {
   View
 } from "react-native";
 import { UserContext } from "../context/userData.context";
+import { Button } from "react-native-elements";
+import TabBarMaterial from "../icons/TabBarMaterial";
 
 export default function HomeScreen({ navigation }) {
   const [calories, setCalories] = React.useState(0);
@@ -28,11 +30,30 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.mealContainer}>
         <View style={styles.addMeal}>
           <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Add Meal");
+            style={{
+              width: "90%",
+              height: "50%",
+              marginTop: "2%",
+              flexDirection: "row"
             }}
+            activeOpacity={0.5}
           >
-            <Image source={require("../assets/images/addMeal.png")} />
+            <Button
+              onPress={() => {
+                navigation.navigate("Search Item");
+              }}
+              title="Add a Meal"
+              titleStyle={{ color: "black", fontWeight: "500", fontSize: 35 }}
+              buttonStyle={{
+                opacity: 0.8,
+                backgroundColor: "#FFFFFF",
+                height: 75,
+                borderWidth: 2,
+                flex: 1,
+                borderColor: "#FFFFFF"
+              }}
+              containerStyle={{ flex: 1 }}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -40,11 +61,30 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.exerciseContainer}>
         <View style={styles.addExercise}>
           <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Add Exercise");
+            style={{
+              width: "90%",
+              height: "50%",
+              marginTop: "2%",
+              flexDirection: "row"
             }}
+            activeOpacity={0.5}
           >
-            <Image source={require("../assets/images/addExercise.png")} />
+            <Button
+              onPress={() => {
+                navigation.navigate("Add Exercise");
+              }}
+              title="Add Exercise"
+              titleStyle={{ color: "black", fontWeight: "500", fontSize: 35 }}
+              buttonStyle={{
+                opacity: 0.8,
+                backgroundColor: "#FFFFFF",
+                height: 75,
+                borderWidth: 2,
+                flex: 1,
+                borderColor: "#FFFFFF"
+              }}
+              containerStyle={{ flex: 1 }}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -113,7 +153,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     alignItems: "center",
-    marginTop: "2%"
+    marginTop: "2%",
+    flex: 1
   },
   addExercise: {
     position: "absolute",
