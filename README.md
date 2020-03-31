@@ -28,7 +28,7 @@ To run this react-native application and start development:
 
 2. Barcode Scanner to detect food items
 
-![Barcode] (https://i.imgur.com/SyMEpte.jpg)
+![Barcode](https://i.imgur.com/SyMEpte.jpg)
 
 3. Suggestions based on the user preference 
 
