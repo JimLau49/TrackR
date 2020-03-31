@@ -15,34 +15,69 @@ import {
   View,
   FlatList
 } from "react-native";
+import { exerciseInfo } from "../constants/exercise-information.data";
+import { UserContext } from "../context/userData.context";
 
 export default function ConfirmExercise({ navigation, route }) {
   const { title } = route.params;
-  const [pickerValue, setPickerValue] = React.useState();
+  const [pickerValue, setPickerValue] = React.useState(1);
+  const [exerciseData, setExerciseData] = React.useState([...exerciseInfo]);
+  const [quantity, setQuantity] = React.useState(1);
 
   const setSelectedValue = itemIndex => {
     setPickerValue(itemIndex);
   };
+  const {currentUserData, userDataUpdated} = React.useContext(UserContext);
+  
+  const filteredData = () => {
+    const queryResult = exerciseData.filter(exercise => exercise.title === title);
+
+    setExerciseData([...queryResult]);
+  };
+  
+  const addToUserReport = () => {
+    exerciseData[0].added = true;
+
+    let userValues = [...currentUserData];
+    
+    let updatedValues = { ...userValues[0] };
+    let exerciseValues = { ...exerciseData[0] };
+    
+    updatedValues.calories += exerciseValues.calorieInfo * quantity;
+    if(updatedValues.calories < 0){
+      updatedValues.calories = 0 ;
+    }
+    currentUserData[0] = updatedValues;
+    userDataUpdated(currentUserData);
+    
+  
+  };
+
+  React.useEffect(() => {
+    filteredData();
+  }, []);
 
   return (
     <View style={styles.mainContainer}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.addComponent}>
           <Text style={styles.title}>{title}</Text>
-          <TextInput style={styles.numPad} keyboardType="number-pad" />
+          <TextInput style={styles.numPad} keyboardType="number-pad" onChangeText={quantity => setQuantity(parseInt(quantity))}/>
           <Picker
             selectedValue={pickerValue}
             onValueChange={pickerValue => {
               setSelectedValue(pickerValue);
+              
             }}
           >
-            <Picker.Item label="Minutes" value="1" />
-            <Picker.Item label="Hours" value="60" />
+            <Picker.Item label="Minutes" value={1} />
+            <Picker.Item label="Hours" value={60} />
           </Picker>
           <TouchableOpacity
             style={styles.addToJournalSubmit}
             activeOpacity={0.5}
             onPress={() => {
+              addToUserReport();
               navigation.navigate("Add Exercise");
             }}
           >

@@ -4,7 +4,7 @@ import { Divider } from "react-native-elements";
 import { UserContext } from "../context/userData.context";
 
 export default function Recipe() {
-  const userData = React.useContext(UserContext);
+  const {currentUserData} = React.useContext(UserContext);
 
   const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
     return (
@@ -65,7 +65,7 @@ export default function Recipe() {
       <View style={styles.nutrientInformation}>
         <Text style={styles.nutrientTitle}>Nutrients</Text>
         <FlatList
-          data={userData}
+          data={currentUserData}
           renderItem={({ item }) => (
             <NutrientItem
               calories={item.calories}

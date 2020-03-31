@@ -35,11 +35,13 @@ export default function searchItem({ navigation }) {
     return (
       <TouchableOpacity
         onPress={() => {
+          clearSearch();
           userInput !== ""
-            ? addedToJournal == false
-              ? navigation.navigate("Confirm Item", { title: title })
+            ? addedToJournal == false 
+              ? navigation.navigate("Confirm Item", { title: title }) 
+
               : navigation.navigate("Update Item", { title: title })
-            : navigation.navigate("Recipe", { title: title });
+            : navigation.navigate("Recipe", { title: title }) 
         }}
       >
         <View style={styles.item}>

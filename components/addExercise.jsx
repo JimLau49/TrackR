@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import TabBarMaterial from "../icons/TabBarMaterial";
+import TabBarAntDesign from "../icons/TabBarAntDesign";
 import { exerciseInfo } from "../constants/exercise-information.data";
 import { exerciseSuggestions } from "../constants/exercise-suggestions.data";
 export default function searchItem({ navigation }) {
@@ -31,21 +32,34 @@ export default function searchItem({ navigation }) {
     setUserInput("");
   };
 
-  const Item = ({ id, title, calorieInfo }) => {
+  const Item = ({ id, title, calorieInfo, addedToJournal }) => {
     return (
       <TouchableOpacity
         onPress={() => {
+          clearSearch();
           navigation.navigate("Confirm Exercise", { title: title });
         }}
       >
-        <View style={styles.item}>
+         <View style={styles.item}>
           <View style={styles.itemContainer}>
             <Text style={styles.title}>{title}</Text>
-            <View style={styles.addIcon}>
-              <TabBarMaterial name="add-circle" color="black" />
-            </View>
+            {userInput !== "" ? (
+              addedToJournal == false ? (
+                <View style={styles.addIcon}>
+                  <TabBarMaterial name="add-circle" color="black" />
+                </View>
+              ) : (
+                <View style={styles.addIcon}>
+                  <TabBarAntDesign name="checkcircle" color="black" />
+                </View>
+              )
+            ) : (
+              <View style={styles.addIcon}>
+                <TabBarMaterial name="book" color="black" />
+              </View>
+            )}
           </View>
-          <Text style={styles.calorieInfo}>{calorieInfo}kCal</Text>
+          <Text style={styles.calorieInfo}>{calorieInfo}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -67,6 +81,7 @@ export default function searchItem({ navigation }) {
               id={item.id}
               title={item.title}
               calorieInfo={item.calorieInfo}
+              addedToJournal={item.added}
             />
           )}
           keyExtractor={item => item.id}
@@ -81,6 +96,7 @@ export default function searchItem({ navigation }) {
                 id={item.id}
                 title={item.title}
                 calorieInfo={item.calorieInfo}
+                addedToJournal={item.added}
               />
             )}
             keyExtractor={item => item.id}

@@ -2,16 +2,16 @@ export const exerciseSuggestions = [
   {
     id: "1",
     title: "Badminton - Moderate",
-    calorieInfo: -460
+    calorieInfo: -100
   },
   {
     id: "2",
     title: "Badminton - Intense",
-    calorieInfo: -230
+    calorieInfo: -220
   },
   {
     id: "3",
     title: "Swimming - Moderate",
-    calorieInfo: -320
+    calorieInfo: -200
   }
 ];

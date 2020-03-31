@@ -23,7 +23,7 @@ export default function ConfirmItem({ route, navigation }) {
   const { title, id } = route.params;
   const [nutrients, setNutrients] = React.useState([...foodData]);
   const [quantity, setQuantity] = React.useState(1);
-  const userData = React.useContext(UserContext);
+  const {currentUserData, userDataUpdated} = React.useContext(UserContext);
 
   const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
     return (
@@ -72,19 +72,25 @@ export default function ConfirmItem({ route, navigation }) {
     setNutrients([...queryResult]);
   };
 
-  const updateUserReport = () => {
-    let userValues = [...userData];
+  const addToUserReport = () => {
+    nutrients[0].added = true;
+
+    let userValues = [...currentUserData];
 
     let updatedValues = { ...userValues[0] };
     let nutrientValues = { ...nutrients[0] };
-
+    
     updatedValues.protein += nutrientValues.protein * quantity;
     updatedValues.calories += nutrientValues.calories * quantity;
     updatedValues.fat += nutrientValues.fat * quantity;
     updatedValues.cholesterol += nutrientValues.cholesterol * quantity;
     updatedValues.sodium += nutrientValues.sodium * quantity;
+    
+    currentUserData[0] = updatedValues;
+    userDataUpdated(currentUserData);
+    
+    
 
-    userData[0] = updatedValues;
   };
 
   React.useEffect(() => {
@@ -112,8 +118,9 @@ export default function ConfirmItem({ route, navigation }) {
             style={styles.addToJournalSubmit}
             activeOpacity={0.5}
             onPress={() => {
-              updateUserReport();
+              addToUserReport();
               navigation.navigate("Search Item");
+              
             }}
           >
             <Text style={styles.addToJournalTextStyle}> Add to journal </Text>

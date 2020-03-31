@@ -12,13 +12,14 @@ import { Button } from "react-native-elements";
 import TabBarMaterial from "../icons/TabBarMaterial";
 
 export default function HomeScreen({ navigation }) {
-  const [calories, setCalories] = React.useState(0);
-  const userData = React.useContext(UserContext);
+  
+  const {currentUserData} = React.useContext(UserContext);
+  
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topContainer}>
         <View style={styles.calorieCounter}>
-          <Text style={styles.h1}>{userData[0].calories}</Text>
+          <Text style={styles.h1}>{currentUserData[0].calories}</Text>
           <Text style={styles.h3}>kCal</Text>
         </View>
         <Text style={styles.h2}>Net Calories</Text>

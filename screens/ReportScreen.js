@@ -4,9 +4,9 @@ import { Divider } from "react-native-elements";
 import { UserContext } from "../context/userData.context";
 
 export default function ReportScreen() {
-  const userData = React.useContext(UserContext);
+  const {currentUserData} = React.useContext(UserContext);
 
-  const NutrientItem = ({ protein, calories, fat, cholesterol, sodium }) => {
+  const NutrientItem = ({ id, protein, calories, fat, cholesterol, sodium }) => {
     return (
       <View>
         <Divider style={{ backgroundColor: "grey" }} />
@@ -29,9 +29,10 @@ export default function ReportScreen() {
       <View style={styles.nutrientInformation}>
         <Text style={styles.nutrientTitle}>Nutrients</Text>
         <FlatList
-          data={userData}
+          data={currentUserData}
           renderItem={({ item }) => (
             <NutrientItem
+              id={item.id}
               calories={item.calories}
               protein={item.protein}
               fat={item.fat}
@@ -39,7 +40,7 @@ export default function ReportScreen() {
               sodium={item.sodium}
             />
           )}
-          keyExtractor={item => item.id}
+          keyExtractor={(item, index) => item.id}
         />
       </View>
     </View>

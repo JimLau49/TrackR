@@ -16,6 +16,7 @@ import { UserProvider } from "./context/userData.context";
 import ConfirmExercise from "./components/ConfirmExercise";
 import updateItem from "./components/updateItem";
 import Recipe from "./components/Recipe";
+import useForceUpdate from 'use-force-update';
 
 const Stack = createStackNavigator();
 
@@ -26,7 +27,8 @@ export default function App(props) {
   const containerRef = React.useRef();
   const { getInitialState } = useLinking(containerRef);
   const [currentUserData, setCurrentUserData] = React.useState([
-    {
+  {
+      id: "0",
       calories: 0,
       protein: 0,
       fat: 0,
@@ -64,6 +66,13 @@ export default function App(props) {
   const setLandingPageClosed = () => {
     setLandingPageOpen(false);
   };
+  
+  const forceUpdate = useForceUpdate();
+  const userDataUpdated = (updateData) => {
+  
+    setCurrentUserData(updateData);
+    forceUpdate();
+  };
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return null;
@@ -79,7 +88,7 @@ export default function App(props) {
             ref={containerRef}
             initialState={initialNavigationState}
           >
-            <UserProvider value={currentUserData}>
+            <UserProvider value={{currentUserData, userDataUpdated}}>
               <Stack.Navigator>
                 <Stack.Screen name="Root" component={BottomTabNavigator} />
                 <Stack.Screen name="Add Meal" component={addMeal} />

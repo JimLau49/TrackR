@@ -8,7 +8,7 @@ export let foodData = [
     fat: 3,
     sodium: 4,
     cholesterol: 9.4,
-    added: true
+    added: false
   },
   {
     id: "2",
